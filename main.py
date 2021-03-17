@@ -35,6 +35,8 @@ if input() == 'y':
         json.dump({}, f)
     with open('credits.json', 'w') as f:
         json.dump({}, f)
+    with open('level.json', 'w') as f:
+        json.dump({}, f)
     print('Your classes/grades have been cleared')
     person = classes(name)
     with open('grades.json', 'r') as f:
@@ -66,13 +68,26 @@ if input() == 'y':
         json.dump(info, f)
 
 
+with open('level.json', 'r') as a:
+    lvls = json.load(a)
+    with open('grades.json', 'r') as b:
+        grds = json.load(b)
 
-person = calcGPA(name)
-print("_______________________________________")
-print(f'{name}\'s Unweighted GPA is ' + str(round(person.unweighted_gpa, 2)))
-print("_______________________________________")
-print(f'{name}\'s Weighted GPA is ' + str(round(person.weighted_gpa, 2)))
-print("_______________________________________")
+        grades = ''
+
+        person = calcGPA(name)
+        print("\n\n_______________________________________")
+        print(f'{name}\'s Classes and Grades are:')
+        for key in lvls:
+            print(lvls[key] + ' ' + key + ': ' + grds[key])
+        print("_______________________________________")
+        print(f'{name}\'s Unweighted GPA is ' + str(round(person.unweighted_gpa, 2)))
+        print("_______________________________________")
+        print(f'{name}\'s Weighted GPA is ' + str(round(person.weighted_gpa, 2)))
+        print("_______________________________________")
+
+
+
 
 
 
